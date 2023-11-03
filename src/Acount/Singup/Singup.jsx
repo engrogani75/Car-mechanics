@@ -15,7 +15,7 @@ const Singup = () => {
         const email = form.email.value;
         const password = form.password.value;
         const users = [name, email, password]
-        console.log(users);
+        // console.log(users);
 
         creatUser(email, password)
         .then(result => {

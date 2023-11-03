@@ -1,10 +1,25 @@
 import { Link } from "react-router-dom";
 import LogNav from "./LogNav";
+import { useContext } from "react";
+import { AuthContex } from "../../Providers/AuthProvider";
 
 
 const Login = () => {
+  const { singin} = useContext(AuthContex)
   const loginHandleForm = event => {
-    event.preDefault()
+    event.preventDefault()
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const users = [name, email, password]
+    // console.log(users);
+
+    singin(email, password)
+    .then(result => {
+        const user = result.user
+        console.log(user);
+    })
+    .then(error => console.log(error))
 
   }
 
