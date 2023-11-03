@@ -5,6 +5,7 @@ import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import Login from "../Acount/LoginForm/Login";
 import Singup from "../Acount/Singup/Singup";
+import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 
 
 
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
         {
           path: "/signup",
           element: <Singup></Singup>,
+        },
+
+        {
+          path: "/services/:id",
+          element: <ServiceDetails></ServiceDetails>,
+    
         },
       ]
     },

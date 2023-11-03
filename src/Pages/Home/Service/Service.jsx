@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Service = () => {
 
     const [serviceCard, setServiceCrad] = useState([])
     useEffect(() =>{
-        fetch('services.json')
+        fetch('http://localhost:5000/services')
         .then(res =>res.json())
         .then(data => setServiceCrad(data))
     },[])
@@ -21,7 +22,7 @@ const Service = () => {
 
             {
                 serviceCard.map(item => 
-                    <div className="mt-4" key={item.id}>
+                    <div className="mt-4" key={item._id}>
                         <figure>
                             <img src={item.img} alt={item.title} className="h-96 rounded-2xl"/>
                         </figure>
@@ -29,9 +30,11 @@ const Service = () => {
                           <h2 className="text-justify text-3xl font-bold">{item.title}</h2>
                           <div className="flex justify-between">
                           <p className="text-orange-700 font-bold">Price: ${item.price}</p>
-                          <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                          <Link to={`/services/${item._id}`}>
+                           <button> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M4.5 12H19.5M19.5 12L12.75 5.25M19.5 12L12.75 18.75" stroke="#FF3811" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg></button>
+    </Link>
                           </div>
                         </div>
                     </div>)
