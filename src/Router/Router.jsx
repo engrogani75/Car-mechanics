@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Acount/LoginForm/Login";
 import Singup from "../Acount/Singup/Singup";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
+import Chekout from "../Pages/ChekOut/Chekout";
 
 
 
@@ -31,7 +32,15 @@ const router = createBrowserRouter([
         {
           path: "/services/:id",
           element: <ServiceDetails></ServiceDetails>,
+          loader: ({params}) =>fetch(`http://localhost:5000/services/${params.id}`)
     
+        },
+
+        {
+          path: "/checkout/:id",
+          element: <Chekout></Chekout>,
+          loader: ({params}) =>fetch(`http://localhost:5000/checkout/${params.id}`)
+         
         },
       ]
     },

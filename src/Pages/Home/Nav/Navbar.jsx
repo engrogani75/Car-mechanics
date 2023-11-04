@@ -1,20 +1,34 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContex } from "../../../Providers/AuthProvider";
 
 
 const Navbar = () => {
+  const {user, singOut} = useContext(AuthContex)
+
+  const signOutHandle = () =>{
+    singOut()
+    .then(() =>{
+
+    })
+    .catch(error =>{
+      console.error(error);
+    })
+  }
+
+
     return (
       <div>
         <ul className="flex gap-8 text-dark-600 font-bold">
           <li>
             <NavLink
-              to="/messages"
+              to="/"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""
               }
             >
               Home
             </NavLink>
-            
           </li>
           <li>
             <NavLink
@@ -25,18 +39,16 @@ const Navbar = () => {
             >
               About
             </NavLink>
-            
           </li>
           <li>
             <NavLink
-              to="/messages"
+              to="/services"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""
               }
             >
-             Services 
+              Services
             </NavLink>
-            
           </li>
 
           <li>
@@ -46,9 +58,8 @@ const Navbar = () => {
                 isPending ? "pending" : isActive ? "active" : ""
               }
             >
-             Blogs
+              Blogs
             </NavLink>
-            
           </li>
 
           <li>
@@ -58,11 +69,28 @@ const Navbar = () => {
                 isPending ? "pending" : isActive ? "active" : ""
               }
             >
-           Contact
+              Contact
             </NavLink>
-            
           </li>
-          
+
+          {
+          user?.email ?  <li>
+              <button onClick={signOutHandle} className="bg-orange-700 text-3xl text-white px-4 py-2 rounded-xl">
+                Logout
+              </button>
+            </li>
+           : 
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Login
+              </NavLink>
+            </li>
+          }
         </ul>
       </div>
     );
