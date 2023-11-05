@@ -51,16 +51,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              Blogs
-            </NavLink>
-          </li>
+       
 
           <li>
             <NavLink
@@ -74,12 +65,24 @@ const Navbar = () => {
           </li>
 
           {
-          user?.email ?  <li>
+          user?.email ? <>   
+          <li>
+          <NavLink
+            to="/orderBook"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Order
+          </NavLink>
+        </li>
+        <li>
               <button onClick={signOutHandle} className="bg-orange-700 text-3xl text-white px-4 py-2 rounded-xl">
                 Logout
               </button>
-            </li>
-           : 
+            </li></>
+        
+         : 
             <li>
               <NavLink
                 to="/login"

@@ -7,6 +7,8 @@ import Login from "../Acount/LoginForm/Login";
 import Singup from "../Acount/Singup/Singup";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Chekout from "../Pages/ChekOut/Chekout";
+import OrderBook from "../Pages/OrderBook/OrderBook";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -40,8 +42,13 @@ const router = createBrowserRouter([
           path: "/checkout/:id",
           element: <Chekout></Chekout>,
           loader: ({params}) =>fetch(`http://localhost:5000/checkout/${params.id}`)
-         
         },
+
+        {
+          path: "/orderBook",
+          element: <PrivateRoute><OrderBook></OrderBook></PrivateRoute>,
+  
+        }
       ]
     },
   ]);
